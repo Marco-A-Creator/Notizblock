@@ -16,12 +16,12 @@
     <script src="./script.js" defer></script>
 </head>
 
-<body onload="renderNotes()">
+<body onload="renderNotes(), init() ">
 
     <h1>Notizblock</h1>
 
     <input type="text" id="note_input">
-    <button onclick="addNote()">Notiz Speichern</button>
+    <button onclick="addNote(), saveNotes()">Notiz Speichern</button>
     <h2>Notes</h2>
     <div id="content">
 

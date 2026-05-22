@@ -64,3 +64,17 @@ function deleteTrashNote(indexTrashNote) {
     renderNotes();
     renderTrashNotes();
 }
+
+//Local Storage
+function init() {
+    if (localStorage.getItem('notes') && localStorage.getItem('notesTitles') && localStorage.getItem('trashNotes') && localStorage.getItem('trashNotesTitles')) {
+        notes = JSON.parse(localStorage.getItem('notes'));
+    }
+}
+
+function saveNotes() {
+    localStorage.setItem('notes', JSON.stringify(notes));
+    localStorage.setItem('notesTitles', JSON.stringify(notesTitles));
+    localStorage.setItem('trashNotes', JSON.stringify(trashNotes));
+    localStorage.setItem('trashNotesTitles', JSON.stringify(trashNotesTitles));
+}
