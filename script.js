@@ -1,3 +1,79 @@
+let notes = [];
+    let archived = [];
+    let deleted = [];
+
+    function saveData() {
+      localStorage.setItem("notes", JSON.stringify(notes));
+      localStorage.setItem("archived", JSON.stringify(archived));
+      localStorage.setItem("deleted", JSON.stringify(deleted));
+    }
+
+    function loadData() {
+      notes = JSON.parse(localStorage.getItem("notes")) || [];
+      archived = JSON.parse(localStorage.getItem("archived")) || [];
+      deleted = JSON.parse(localStorage.getItem("deleted")) || [];
+
+      renderNotes();
+    }
+
+    function addNote() {
+      const text = document.getElementById("noteText").value.trim();
+
+      if(text === "") {
+        alert("Bitte eine Notiz eingeben!");
+        return;
+      }
+
+      notes.push(text);
+      document.getElementById("noteText").value = "";
+
+      saveData();
+      renderNotes();
+    }
+
+    function archiveNote(index) {
+      archived.push(notes[index]);
+      notes.splice(index, 1);
+
+      saveData();
+      renderNotes();
+    }
+
+    function deleteNote(index, source) {
+
+      if(source === "active"){
+        deleted.push(notes[index]);
+        notes.splice(index,1);
+      }
+
+      if(source === "archived"){
+        deleted.push(archived[index]);
+        archived.splice(index,1);
+      }
+
+      saveData();
+      renderNotes();
+    }
+
+    function restoreNote(index) {
+      notes.push(deleted[index]);
+      deleted.splice(index,1);
+
+      saveData();
+      renderNotes();
+    }
+
+    function permanentlyDelete(index) {
+      deleted.splice(index,1);
+
+      saveData();
+      renderNotes();
+    }
+
+
+
+
+/**
 let notesTitles = ['Note', 'Book'];
 let notes = ['Itachi Uchia', 'Sasuka Uchia'];
 
@@ -78,3 +154,4 @@ function saveNotes() {
     localStorage.setItem('trashNotes', JSON.stringify(trashNotes));
     localStorage.setItem('trashNotesTitles', JSON.stringify(trashNotesTitles));
 }
+*/

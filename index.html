@@ -12,24 +12,41 @@
     <link rel="stylesheet" href="./styles/fonts.css" />
     <link rel="stylesheet" href="./styles/standard.css" />
     <link rel="stylesheet" href="./styles/variablen.css" />
+    <link rel="stylesheet" href="./styles/note.css" />
 
-    <script src="./script.js" defer></script>
+    <script src="./scripts/templates.js"></script>
+    <script src="./script.js"></script>
 </head>
 
-<body onload="renderNotes(), init() ">
+<body>
+    <header>
+        <img src="./assets/icons/notizblock-icon.png" alt="Notizblock Icon">
 
-    <h1>Notizblock</h1>
+    </header>
 
-    <input type="text" id="note_input">
-    <button onclick="addNote(), saveNotes()">Notiz Speichern</button>
-    <h2>Notes</h2>
-    <div id="content">
+    <main>
+        <div class="note-area">
+            <h1>📝 Mein Notizblock</h1>
 
-    </div>
-    <h2>Trash</h2>
-    <div id="trash_content">
+            <div class="note-input">
+                <textarea id="noteText" placeholder="Neue Notiz schreiben..."></textarea>
+                <button class="add-btn" onclick="addNote()">Hinzufügen</button>
+            </div>
 
-    </div>
+            <h2 class="section-title">Aktive Notizen</h2>
+            <div class="notes" id="activeNotes"></div>
+
+            <h2 class="section-title">Archivierte Notizen</h2>
+            <div class="notes" id="archivedNotes"></div>
+
+            <h2 class="section-title">Gelöschte Notizen</h2>
+            <div class="notes" id="deletedNotes"></div>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Mein Notizblock. Alle Rechte vorbehalten.</p>
+    </footer>
 
 </body>
 
